@@ -6,17 +6,9 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import CameraScreenExample from './CameraScreenExample';
-import BarcodeScreenExample from './BarcodeScreenExample';
 import CameraExample from './CameraExample';
 
-type State = {
-  example?: CameraExample | CameraScreenExample | BarcodeScreenExample;
-}
-
 export default class App extends Component {
-  state: State;
-
   constructor(props) {
     super(props);
     this.state = {
@@ -25,35 +17,9 @@ export default class App extends Component {
   }
 
   render() {
-    if (this.state.example) {
-      const Example = this.state.example;
-      return <Example />;
-    }
     return (
       <View style={{ flex: 1 }}>
-        <View style={styles.headerContainer}>
-          <Text style={{ fontSize: 60 }}>🎈</Text>
-          <Text style={styles.headerText}>
-            React Native Camera Kit
-          </Text>
-        </View>
-        <View style={styles.container}>
-          <TouchableOpacity style={styles.button} onPress={() => this.setState({ example: CameraExample })}>
-            <Text style={styles.buttonText}>
-              Camera
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={() => this.setState({ example: CameraScreenExample })}>
-            <Text style={styles.buttonText}>
-              Camera Screen
-            </Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.button} onPress={() => this.setState({ example: BarcodeScreenExample })}>
-            <Text style={styles.buttonText}>
-              Barcode Scanner
-            </Text>
-          </TouchableOpacity>
-        </View>
+        <CameraExample />
       </View>
     );
   }
